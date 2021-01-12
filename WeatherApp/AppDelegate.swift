@@ -13,7 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Navigation bar backgroundColor and items color.
+        let aparence = UINavigationBarAppearance()
+        aparence.backgroundColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        aparence.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        aparence.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = aparence
+        UINavigationBar.appearance().scrollEdgeAppearance = aparence
+        UIBarButtonItem.appearance().tintColor = .white
+        
         return true
     }
 
