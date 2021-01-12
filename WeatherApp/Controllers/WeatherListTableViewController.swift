@@ -34,12 +34,31 @@ extension WeatherListTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "addCityViewController" {
+            prepareAddCitySegue(segue: segue)
+        } else if segue.identifier == "settingsTableViewController" {
+            prepareSettingsSegue(segue: segue)
+        }
+    }
+    
+    private func prepareAddCitySegue(segue: UIStoryboardSegue) {
+        
         guard let nav = segue.destination as? UINavigationController else { fatalError("Nav not found") }
         
         guard let addCityVC = nav.viewControllers.first as? AddCityViewController else { fatalError("Add city VC, nor found") }
         
         addCityVC.delegate = self
     }
+    
+    private func prepareSettingsSegue(segue: UIStoryboardSegue) {
+        guard let nav = segue.destination as? UINavigationController else { fatalError("Nav not found") }
+        
+        guard let settingsVC = nav.viewControllers.first as? SettingsTableViewController else { fatalError("Settings VC, nor found") }
+        
+        settingsVC.delegate = self
+    }
+    
 }
 
 // TableViewDelegate, TableViewDataSource
@@ -74,4 +93,15 @@ extension WeatherListTableViewController: AddCityDelegate {
         tableView.reloadData()
         
     }
+}
+
+// SettingsTableViewControllerDelegate
+extension WeatherListTableViewController: SettingsTableViewControllerDelegate {
+    func settingsDone(viewModel: SettingsViewModel) {
+        
+        weatherListViewModel.updateUnit(to: viewModel.selectedUnit)
+        tableView.reloadData()
+        
+    }
+    
 }

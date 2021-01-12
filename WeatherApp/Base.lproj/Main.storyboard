@@ -32,10 +32,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="GoodWeather" id="D2O-Cc-Way">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="hDf-1o-hId"/>
+                        <barButtonItem key="leftBarButtonItem" image="settings_icon" id="hDf-1o-hId">
+                            <connections>
+                                <segue destination="Vog-T4-oSK" kind="presentation" identifier="settingsTableViewController" modalPresentationStyle="fullScreen" id="rsq-yH-2E0"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vuy-yt-hX8">
                             <connections>
-                                <segue destination="PPC-oB-J5r" kind="presentation" modalPresentationStyle="fullScreen" id="Wmz-HT-nPz"/>
+                                <segue destination="PPC-oB-J5r" kind="presentation" identifier="addCityViewController" modalPresentationStyle="fullScreen" id="Wmz-HT-nPz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -43,6 +47,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaY-h6-aTS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857.97101449275374" y="105.80357142857143"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="i0V-Ss-1QT">
+            <objects>
+                <tableViewController id="Pnq-9S-kLW" customClass="SettingsTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="znB-Zn-4sm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" id="8e0-Qc-hpv">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8e0-Qc-hpv" id="rrD-nY-DLE">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Pnq-9S-kLW" id="V4W-xE-u1L"/>
+                            <outlet property="delegate" destination="Pnq-9S-kLW" id="vKd-hU-UWJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="uBh-5d-pmE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="D9V-8p-lR9">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="Pnq-9S-kLW" id="S0Z-v8-5YX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kBk-aW-p8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="-599"/>
         </scene>
         <!--Add City-->
         <scene sceneID="jN2-Kw-yDS">
@@ -128,8 +167,27 @@
             </objects>
             <point key="canvasLocation" x="1686.9565217391305" y="105.80357142857143"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gBY-MD-gSy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vog-T4-oSK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q5P-Da-xCL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pnq-9S-kLW" kind="relationship" relationship="rootViewController" id="q4F-lE-Wjg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7CD-ub-xgJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857.97101449275374" y="-598.66071428571422"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="settings_icon" width="22" height="22"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
