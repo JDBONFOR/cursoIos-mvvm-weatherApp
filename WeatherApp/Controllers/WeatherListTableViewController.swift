@@ -12,10 +12,17 @@ class WeatherListTableViewController: UITableViewController {
     
     // MARK: - Vars
     private var weatherListViewModel = WeatherListViewModel()
+    private var dataSource: GenericTableViewDataSource<WeatherCell, WeatherCityViewModel>!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataSource = GenericTableViewDataSource(cellIdentifier: "WeatherCell", items: weatherListViewModel.weatherCityViewModel) { cell, vm in
+            cell.titleLabel.text = vm.name.value
+            cell.temperatureLabel.text = vm.currentTemperature.temperature.value.formatAsDegree
+        }
+        tableView.dataSource = dataSource
         
         setupUI()
     }
@@ -73,22 +80,6 @@ extension WeatherListTableViewController {
 
 // TableViewDelegate, TableViewDataSource
 extension WeatherListTableViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherListViewModel.numberOfRows(section)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        let weatherVM = weatherListViewModel.modelAt(indexPath.row)
-        
-        cell.setupCell(weatherVM)
-        
-        return cell
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "CityDetailViewController", sender: self)
@@ -104,6 +95,7 @@ extension WeatherListTableViewController: AddCityDelegate {
     func addWeatherDidSave(viewModel: WeatherCityViewModel) {
         
         weatherListViewModel.addWeatherViewModel(viewModel)
+        dataSource.updateItems(self.weatherListViewModel.weatherCityViewModel)
         tableView.reloadData()
         
     }
