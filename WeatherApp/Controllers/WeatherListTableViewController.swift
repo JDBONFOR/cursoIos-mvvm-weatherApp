@@ -39,6 +39,8 @@ extension WeatherListTableViewController {
             prepareAddCitySegue(segue: segue)
         } else if segue.identifier == "settingsTableViewController" {
             prepareSettingsSegue(segue: segue)
+        } else if segue.identifier == "CityDetailViewController" {
+            prepareCityDetailSegue(segue: segue)
         }
     }
     
@@ -57,6 +59,14 @@ extension WeatherListTableViewController {
         guard let settingsVC = nav.viewControllers.first as? SettingsTableViewController else { fatalError("Settings VC, nor found") }
         
         settingsVC.delegate = self
+    }
+    
+    private func prepareCityDetailSegue(segue: UIStoryboardSegue) {
+        
+        guard let cityDetailsVC = segue.destination as? CityDetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+        
+        let cityDetailsVM = weatherListViewModel.modelAt(indexPath.row)
+        cityDetailsVC.viewModel = cityDetailsVM
     }
     
 }
@@ -78,6 +88,10 @@ extension WeatherListTableViewController {
         cell.setupCell(weatherVM)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "CityDetailViewController", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

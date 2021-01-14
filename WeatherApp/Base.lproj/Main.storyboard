@@ -17,13 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Era-40-EGa">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Era-40-EGa" customClass="WeatherCell" customModule="WeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Era-40-EGa" id="c9l-QY-k1I">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="QEz-4A-nye" kind="show" identifier="CityDetailViewController" id="fSn-27-KRa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,28 +94,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V2C-VK-TAI">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V2C-VK-TAI" customClass="BindingTextField" customModule="WeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="16" y="108" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuh-gg-rP9">
-                                <rect key="frame" x="16" y="172" width="382" height="30"/>
+                                <rect key="frame" x="16" y="242" width="382" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonAction:" destination="V36-9e-Jhu" eventType="touchUpInside" id="t0L-xI-skX"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter state" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7t-lW-Mog" customClass="BindingTextField" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="150" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FC8-0a-A2c" customClass="BindingTextField" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="192" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iMv-kH-h9g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xuh-gg-rP9" firstAttribute="leading" secondItem="iMv-kH-h9g" secondAttribute="leading" constant="16" id="3SK-KV-Jm3"/>
+                            <constraint firstItem="w7t-lW-Mog" firstAttribute="top" secondItem="V2C-VK-TAI" secondAttribute="bottom" constant="8" id="527-oq-haO"/>
+                            <constraint firstItem="iMv-kH-h9g" firstAttribute="trailing" secondItem="w7t-lW-Mog" secondAttribute="trailing" constant="16" id="E1E-A7-HUx"/>
                             <constraint firstItem="iMv-kH-h9g" firstAttribute="trailing" secondItem="V2C-VK-TAI" secondAttribute="trailing" constant="16" id="XTS-l8-gal"/>
+                            <constraint firstItem="FC8-0a-A2c" firstAttribute="top" secondItem="w7t-lW-Mog" secondAttribute="bottom" constant="8" id="XlJ-Zg-lUx"/>
+                            <constraint firstItem="Xuh-gg-rP9" firstAttribute="top" secondItem="FC8-0a-A2c" secondAttribute="bottom" constant="16" id="YJO-tb-ZIT"/>
+                            <constraint firstItem="iMv-kH-h9g" firstAttribute="trailing" secondItem="FC8-0a-A2c" secondAttribute="trailing" constant="16" id="ZIi-2g-NDa"/>
+                            <constraint firstItem="FC8-0a-A2c" firstAttribute="leading" secondItem="iMv-kH-h9g" secondAttribute="leading" constant="16" id="bBT-0g-hQQ"/>
                             <constraint firstItem="V2C-VK-TAI" firstAttribute="top" secondItem="iMv-kH-h9g" secondAttribute="top" constant="20" id="gNK-QP-Xhz"/>
                             <constraint firstItem="iMv-kH-h9g" firstAttribute="trailing" secondItem="Xuh-gg-rP9" secondAttribute="trailing" constant="16" id="lsK-nv-qbb"/>
                             <constraint firstItem="V2C-VK-TAI" firstAttribute="leading" secondItem="iMv-kH-h9g" secondAttribute="leading" constant="16" id="uYp-Nh-LR5"/>
-                            <constraint firstItem="Xuh-gg-rP9" firstAttribute="top" secondItem="V2C-VK-TAI" secondAttribute="bottom" constant="30" id="wkC-9C-QG1"/>
+                            <constraint firstItem="w7t-lW-Mog" firstAttribute="leading" secondItem="iMv-kH-h9g" secondAttribute="leading" constant="16" id="zqQ-LJ-pXU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add City" id="gzf-2l-XYX">
@@ -125,6 +144,8 @@
                     <connections>
                         <outlet property="cityTextField" destination="V2C-VK-TAI" id="JjX-AW-zLm"/>
                         <outlet property="saveButton" destination="Xuh-gg-rP9" id="3LC-4h-7da"/>
+                        <outlet property="stateTextField" destination="w7t-lW-Mog" id="qo6-7T-rta"/>
+                        <outlet property="zipCodeTextField" destination="FC8-0a-A2c" id="NS8-Wp-bcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9V-QT-vGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -166,6 +187,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFJ-71-hzY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1686.9565217391305" y="105.80357142857143"/>
+        </scene>
+        <!--City Detail View Controller-->
+        <scene sceneID="IRu-aV-l3M">
+            <objects>
+                <viewController id="QEz-4A-nye" customClass="CityDetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8zm-6r-hDI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjF-zf-zoO">
+                                <rect key="frame" x="16" y="108" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-KG-EDI">
+                                <rect key="frame" x="16" y="149" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEd-4x-rpA">
+                                <rect key="frame" x="16" y="190" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-8B-IcH">
+                                <rect key="frame" x="16" y="231" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="khR-Hu-0XM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="khR-Hu-0XM" firstAttribute="trailing" secondItem="gR4-KG-EDI" secondAttribute="trailing" constant="16" id="8BM-8C-iQ9"/>
+                            <constraint firstItem="gR4-KG-EDI" firstAttribute="top" secondItem="CjF-zf-zoO" secondAttribute="bottom" constant="20" id="H7O-jm-FII"/>
+                            <constraint firstItem="P2a-8B-IcH" firstAttribute="top" secondItem="wEd-4x-rpA" secondAttribute="bottom" constant="20" id="NIt-17-bDo"/>
+                            <constraint firstItem="khR-Hu-0XM" firstAttribute="trailing" secondItem="P2a-8B-IcH" secondAttribute="trailing" constant="16" id="XmC-nz-hGp"/>
+                            <constraint firstItem="khR-Hu-0XM" firstAttribute="trailing" secondItem="CjF-zf-zoO" secondAttribute="trailing" constant="16" id="hBR-jJ-zy5"/>
+                            <constraint firstItem="wEd-4x-rpA" firstAttribute="top" secondItem="gR4-KG-EDI" secondAttribute="bottom" constant="20" id="hKT-g8-CoU"/>
+                            <constraint firstItem="P2a-8B-IcH" firstAttribute="leading" secondItem="khR-Hu-0XM" secondAttribute="leading" constant="16" id="j2f-5a-fMA"/>
+                            <constraint firstItem="khR-Hu-0XM" firstAttribute="trailing" secondItem="wEd-4x-rpA" secondAttribute="trailing" constant="16" id="lwn-nz-PyH"/>
+                            <constraint firstItem="CjF-zf-zoO" firstAttribute="top" secondItem="khR-Hu-0XM" secondAttribute="top" constant="20" id="pJC-bW-eCR"/>
+                            <constraint firstItem="wEd-4x-rpA" firstAttribute="leading" secondItem="khR-Hu-0XM" secondAttribute="leading" constant="16" id="qkE-UK-E9h"/>
+                            <constraint firstItem="CjF-zf-zoO" firstAttribute="leading" secondItem="khR-Hu-0XM" secondAttribute="leading" constant="16" id="yIS-UD-oFk"/>
+                            <constraint firstItem="gR4-KG-EDI" firstAttribute="leading" secondItem="khR-Hu-0XM" secondAttribute="leading" constant="16" id="yMq-f6-Uog"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8lh-BL-Cfr"/>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="CjF-zf-zoO" id="lYf-Ml-DKv"/>
+                        <outlet property="currentTemperature" destination="gR4-KG-EDI" id="KMJ-ao-QK0"/>
+                        <outlet property="maxTemperature" destination="P2a-8B-IcH" id="SuK-jZ-CLP"/>
+                        <outlet property="minTemperature" destination="wEd-4x-rpA" id="jo0-Hp-xLY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TYY-4E-9yu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="832"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gBY-MD-gSy">

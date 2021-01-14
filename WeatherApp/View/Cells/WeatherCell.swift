@@ -23,8 +23,8 @@ class WeatherCell: UITableViewCell {
 extension WeatherCell {
     
     func setupCell(_ cell: WeatherCityViewModel) {
-        self.titleLabel.text = cell.name
-        self.temperatureLabel.text = String(cell.currentTemperature.temperature.formatAsDegree)
+        self.titleLabel.text = cell.name.value
+        self.temperatureLabel.text = String(cell.currentTemperature.temperature.value.formatAsDegree)
     }
 
 }
